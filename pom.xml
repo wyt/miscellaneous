@@ -17,6 +17,8 @@
         <module>redis</module>
         <module>elasticsearch</module>
         <module>kafka</module>
+        <module>mongodb</module>
+        <module>netty</module>
     </modules>
 
 </project>
