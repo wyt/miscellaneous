@@ -7,7 +7,17 @@
     <groupId>git.wyt</groupId>
     <artifactId>miscellaneous</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1</version>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <ch.qos.logback.version>1.2.3</ch.qos.logback.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
 
     <modules>
         <module>zookeeper</module>
