@@ -12,9 +12,8 @@
     <artifactId>zookeeper</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>nomal</module>
+        <module>native</module>
         <module>4springboot</module>
     </modules>
-
 
 </project>
