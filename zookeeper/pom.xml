@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>native</module>
-        <module>4springboot</module>
+        <module>curator</module>
     </modules>
 
 </project>

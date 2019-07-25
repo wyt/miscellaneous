@@ -1,4 +1,4 @@
-package git.wyt.zookeeper.nomal;
+package git.wyt.zookeeper.nativeapi;
 
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
