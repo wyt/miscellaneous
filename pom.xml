@@ -32,6 +32,11 @@
 
     <!-- 所有子项目都会引用 -->
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
         <!-- Only needed to run tests in a version of IntelliJ IDEA that bundles older versions -->
         <dependency>
             <groupId>org.junit.platform</groupId>
@@ -56,11 +61,6 @@
     <!-- 可选依赖,子项目按需引用 -->
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.16.18</version>
-            </dependency>
             <!-- sfl4j + logbak begin -->
             <dependency>
                 <groupId>org.slf4j</groupId>

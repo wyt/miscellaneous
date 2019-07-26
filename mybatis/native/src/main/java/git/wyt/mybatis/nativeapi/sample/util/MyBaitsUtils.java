@@ -1,5 +1,6 @@
 package git.wyt.mybatis.nativeapi.sample.util;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,6 +13,7 @@ import java.io.InputStream;
  * @author wangyongtao
  * @date 2019-7-26
  */
+@Slf4j
 public class MyBaitsUtils {
 
   static final String MYBATIS_CONFIG = "mybatis-config.xml";
@@ -26,7 +28,7 @@ public class MyBaitsUtils {
       inputStream = Resources.getResourceAsStream(MYBATIS_CONFIG);
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
     } catch (IOException e) {
-      e.printStackTrace();
+      log.error(e.getMessage(), e);
     }
   }
 

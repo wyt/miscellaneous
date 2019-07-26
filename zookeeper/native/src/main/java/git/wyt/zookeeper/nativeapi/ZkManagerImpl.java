@@ -1,5 +1,6 @@
 package git.wyt.zookeeper.nativeapi;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs;
@@ -12,6 +13,7 @@ import java.io.UnsupportedEncodingException;
  * @author wangyongtao
  * @date 2019-7-24
  */
+@Slf4j
 public class ZkManagerImpl implements ZkManager {
 
   private static ZooKeeper zooKeeper;
@@ -22,9 +24,9 @@ public class ZkManagerImpl implements ZkManager {
     try {
       init();
     } catch (IOException e) {
-      e.printStackTrace();
+      log.error(e.getMessage(), e);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      log.error(e.getMessage(), e);
     }
   }
 
@@ -37,7 +39,7 @@ public class ZkManagerImpl implements ZkManager {
     try {
       zkConn.close();
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      log.error(e.getMessage(), e);
     }
   }
 
