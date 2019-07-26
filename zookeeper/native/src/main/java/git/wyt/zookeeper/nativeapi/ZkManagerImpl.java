@@ -60,4 +60,10 @@ public class ZkManagerImpl implements ZkManager {
     int version = zooKeeper.exists(path, true).getVersion();
     zooKeeper.setData(path, data, version);
   }
+
+  @Override
+  public void delete(String path) throws KeeperException, InterruptedException {
+    int version = zooKeeper.exists(path, true).getVersion();
+    zooKeeper.delete(path, version);
+  }
 }

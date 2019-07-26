@@ -16,4 +16,8 @@ public interface ZkManager {
       throws KeeperException, InterruptedException, UnsupportedEncodingException;
 
   void update(String path, byte[] data) throws KeeperException, InterruptedException;
+
+  void delete(String path) throws KeeperException, InterruptedException;
+
+  void closeConn();
 }
