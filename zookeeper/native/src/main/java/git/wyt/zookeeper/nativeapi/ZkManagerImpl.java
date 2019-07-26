@@ -30,7 +30,7 @@ public class ZkManagerImpl implements ZkManager {
 
   private void init() throws IOException, InterruptedException {
     zkConn = new ZkConn();
-    zooKeeper = zkConn.connect("localhost");
+    zooKeeper = zkConn.connect();
   }
 
   public void closeConn() {

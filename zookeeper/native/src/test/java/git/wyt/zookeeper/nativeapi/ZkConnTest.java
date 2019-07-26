@@ -19,7 +19,7 @@ public class ZkConnTest {
   @DisplayName("获取一个Zookeeper链接")
   void connectTest() throws IOException, InterruptedException, KeeperException {
     ZkConn zkConn = new ZkConn();
-    ZooKeeper zooKeeper = zkConn.connect("localhost:2181");
+    ZooKeeper zooKeeper = zkConn.connect();
     System.out.println(zooKeeper.toString());
 
     Assertions.assertNotNull(zooKeeper.toString());

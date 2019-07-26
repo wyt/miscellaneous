@@ -13,13 +13,15 @@ import java.util.concurrent.CountDownLatch;
  */
 public class ZkConn {
 
+  private static final String ZOO_HOST = "localhost:2181";
+
   private ZooKeeper zooKeeper;
   CountDownLatch zkConnLatch = new CountDownLatch(1);
 
-  public ZooKeeper connect(String host) throws IOException, InterruptedException {
+  public ZooKeeper connect() throws IOException, InterruptedException {
     zooKeeper =
         new ZooKeeper(
-            host,
+            ZOO_HOST,
             2000,
             new Watcher() {
               @Override
