@@ -28,6 +28,7 @@
         <module>kafka</module>
         <module>mongodb</module>
         <module>netty</module>
+        <module>rocketmq</module>
     </modules>
 
     <!-- 所有子项目都会引用 -->
