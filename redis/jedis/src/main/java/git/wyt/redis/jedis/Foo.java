@@ -20,6 +20,8 @@ public class Foo {
     jedis.set("foo", "bar");
     String value = jedis.get("foo");
     System.out.println(value);
+
+    jedis.slaveof("",11);
   }
 
   public void usePool() {
