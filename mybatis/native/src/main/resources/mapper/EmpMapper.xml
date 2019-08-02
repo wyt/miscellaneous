@@ -10,6 +10,10 @@
         FROM Emp
         WHERE empno = #{empno}
     </select>
+    
+    <select id="findByColumn" resultType="git.wyt.mybatis.nativeapi.sample.domain.Emp">
+        select * from Emp where ${column} = #{value}
+    </select>
 
     <insert id="insertEmp" useGeneratedKeys="true" keyProperty="empno"
             parameterType="git.wyt.mybatis.nativeapi.sample.domain.Emp">

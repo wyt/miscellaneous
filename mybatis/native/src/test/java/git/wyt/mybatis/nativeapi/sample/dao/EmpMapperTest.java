@@ -79,6 +79,15 @@ class EmpMapperTest {
     mapper.deleteEmp(insterEmpNo);
   }
 
+  @Test
+  @Order(5)
+  @DisplayName("按指定列查询Emp")
+  void findByColumn() {
+    EmpMapper mapper = session.getMapper(EmpMapper.class);
+    Emp emp = mapper.findByColumn("ename", "SCOTT");
+    Assertions.assertEquals(7788, emp.getEmpno());
+  }
+
   @AfterEach
   void destroy() {
     System.out.println("destroy ---------< invoked");
