@@ -48,6 +48,7 @@ public class FooBar {
 
     JedisCluster jedisCluster = new JedisCluster(jedisClusterNodes);
     jedisCluster.set("foo", "bar002");
+
     String value = jedisCluster.get("foo");
     System.out.println(value);
   }
