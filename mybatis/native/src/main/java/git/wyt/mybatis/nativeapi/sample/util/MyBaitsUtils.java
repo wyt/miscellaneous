@@ -35,7 +35,7 @@ public class MyBaitsUtils {
   public static SqlSession openSession() {
     SqlSession session = threadLocal.get();
     if (session == null) {
-      session = sqlSessionFactory.openSession();
+      session = sqlSessionFactory.openSession(false);
       threadLocal.set(session);
     }
     return session;
@@ -44,6 +44,7 @@ public class MyBaitsUtils {
   public static void closeSession() {
     SqlSession session = threadLocal.get();
     if (session != null) {
+      session.commit();
       session.close();
     }
   }
