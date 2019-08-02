@@ -5,7 +5,7 @@ import redis.clients.jedis.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Foo {
+public class FooBar {
 
   private static final String REDIS_LOCAL_HOST = "localhost";
   private static final int REDIS_LOCAL_PORT = 6379;
@@ -13,7 +13,7 @@ public class Foo {
   JedisPool pool = new JedisPool(new JedisPoolConfig(), REDIS_LOCAL_HOST, REDIS_LOCAL_PORT);
 
   public static void main(String[] args) {
-    Foo foo = new Foo();
+    FooBar foo = new FooBar();
     foo.useCluster();
   }
 
