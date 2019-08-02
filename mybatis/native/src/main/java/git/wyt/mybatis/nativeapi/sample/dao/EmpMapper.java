@@ -9,4 +9,6 @@ import git.wyt.mybatis.nativeapi.sample.domain.Emp;
 public interface EmpMapper {
 
   Emp selectEmp(int empno);
+
+  void insertEmp(Emp emp);
 }

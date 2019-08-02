@@ -35,8 +35,11 @@ public class MyBaitsUtils {
   public static SqlSession openSession() {
     SqlSession session = threadLocal.get();
     if (session == null) {
+      System.out.println("sqlSession为空，新创建");
       session = sqlSessionFactory.openSession(false);
       threadLocal.set(session);
+    } else {
+      System.out.println("sqlSession存在，不创建");
     }
     return session;
   }
@@ -46,6 +49,8 @@ public class MyBaitsUtils {
     if (session != null) {
       session.commit();
       session.close();
+      System.out.println("关闭sqlSession");
     }
+    threadLocal.remove();
   }
 }

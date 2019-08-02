@@ -2,8 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="git.wyt.mybatis.nativeapi.sample.dao.EmpMapper">
+
     <select id="selectEmp" resultType="git.wyt.mybatis.nativeapi.sample.domain.Emp">
-        select * from Emp where empno = #{empno}
+        SELECT *
+        FROM Emp
+        WHERE empno = #{empno}
     </select>
+
+    <insert id="insertEmp" useGeneratedKeys="true" keyProperty="empno"
+            parameterType="git.wyt.mybatis.nativeapi.sample.domain.Emp">
+        INSERT INTO Emp (ename,job,mgr,hiredate,sal,comm,deptno) VALUES (#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+    </insert>
+
 </mapper>
