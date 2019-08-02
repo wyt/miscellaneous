@@ -16,4 +16,20 @@
         INSERT INTO Emp (ename,job,mgr,hiredate,sal,comm,deptno) VALUES (#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
     </insert>
 
+    <update id="updateEmp">
+        UPDATE Emp SET
+         ename = #{ename},
+         job = #{job},
+         mgr = #{mgr},
+         hiredate = #{hiredate},
+         sal = #{sal},
+         comm = #{comm},
+         deptno = #{deptno}
+        WHERE empno = #{empno}
+    </update>
+
+    <delete id="deleteEmp">
+        delete from Emp where empno = #{empno}
+    </delete>
+
 </mapper>

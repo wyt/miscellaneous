@@ -11,4 +11,8 @@ public interface EmpMapper {
   Emp selectEmp(int empno);
 
   void insertEmp(Emp emp);
+
+  void deleteEmp(int empno);
+
+  void updateEmp(Emp emp);
 }
