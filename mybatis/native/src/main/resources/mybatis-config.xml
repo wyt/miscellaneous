@@ -6,6 +6,10 @@
 
     <properties resource="jdbc.properties"></properties>
 
+    <typeAliases>
+        <typeAlias type="git.wyt.mybatis.nativeapi.sample.domain.Emp" alias="Emp"/>
+    </typeAliases>
+
     <environments default="development">
         <environment id="development">
             <!-- 默认关闭事务自动提交 -->

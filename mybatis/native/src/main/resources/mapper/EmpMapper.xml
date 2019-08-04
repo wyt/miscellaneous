@@ -5,18 +5,18 @@
 
 <mapper namespace="git.wyt.mybatis.nativeapi.sample.dao.EmpMapper">
 
-    <select id="selectEmp" resultType="git.wyt.mybatis.nativeapi.sample.domain.Emp">
+    <select id="selectEmp" resultType="Emp">
         SELECT *
         FROM Emp
         WHERE empno = #{empno}
     </select>
-    
-    <select id="findByColumn" resultType="git.wyt.mybatis.nativeapi.sample.domain.Emp">
+
+    <select id="findByColumn" resultType="Emp">
         select * from Emp where ${column} = #{value}
     </select>
 
     <insert id="insertEmp" useGeneratedKeys="true" keyProperty="empno"
-            parameterType="git.wyt.mybatis.nativeapi.sample.domain.Emp">
+            parameterType="Emp">
         INSERT INTO Emp (ename,job,mgr,hiredate,sal,comm,deptno) VALUES (#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
     </insert>
 
