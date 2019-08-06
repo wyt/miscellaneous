@@ -8,6 +8,7 @@
 
     <typeAliases>
         <typeAlias type="git.wyt.mybatis.nativeapi.sample.domain.Emp" alias="Emp"/>
+        <typeAlias type="git.wyt.mybatis.nativeapi.sample.domain.Dept" alias="Dept"/>
     </typeAliases>
 
     <environments default="development">

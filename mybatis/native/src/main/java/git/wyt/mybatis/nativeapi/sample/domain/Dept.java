@@ -12,10 +12,10 @@ import lombok.Setter;
 public class Dept {
 
   /** 部门编号 */
-  private int deptno;
+  private int deptNo;
 
   /** 部门名称 */
-  private String dname;
+  private String dName;
 
   /** 部门位置 */
   private String loc;
