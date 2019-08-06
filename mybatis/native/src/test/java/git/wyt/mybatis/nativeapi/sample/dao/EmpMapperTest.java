@@ -1,5 +1,6 @@
 package git.wyt.mybatis.nativeapi.sample.dao;
 
+import git.wyt.mybatis.nativeapi.sample.domain.Dept;
 import git.wyt.mybatis.nativeapi.sample.domain.Emp;
 import git.wyt.mybatis.nativeapi.sample.util.MyBaitsUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -39,7 +40,11 @@ class EmpMapperTest {
       emp.setJob("CEO");
       emp.setHireDate(new Date(System.currentTimeMillis()));
       emp.setSal(new BigDecimal(42000.23));
-      emp.setDeptNo(10);
+
+      Dept dept = new Dept();
+      dept.setDeptNo(10);
+
+      emp.setDept(dept);
 
       mapper.insertEmp(emp);
       insterEmpNo = emp.getEmpNo();
@@ -71,10 +76,27 @@ class EmpMapperTest {
     Emp emp = mapper.selectEmp(insterEmpNo);
     Assertions.assertEquals("Angus", emp.getEName());
     Assertions.assertEquals("CTO", emp.getJob());
+
+    Assertions.assertNull(emp.getDept().getDName());
   }
 
   @Test
   @Order(4)
+  @DisplayName("查询一个Emp,关联部门信息")
+  void selectEmpCascade() {
+    EmpMapper mapper = session.getMapper(EmpMapper.class);
+    Emp emp = mapper.selectEmpCascade(insterEmpNo);
+
+    Assertions.assertEquals("Angus", emp.getEName());
+    Assertions.assertEquals("CTO", emp.getJob());
+
+    Assertions.assertEquals(10, emp.getDept().getDeptNo());
+    Assertions.assertEquals("ACCOUNTING", emp.getDept().getDName());
+    Assertions.assertEquals("NEW YORK", emp.getDept().getLoc());
+  }
+
+  @Test
+  @Order(5)
   @DisplayName("删除一个Emp")
   void delete() {
     EmpMapper mapper = session.getMapper(EmpMapper.class);
@@ -82,7 +104,7 @@ class EmpMapperTest {
   }
 
   @Test
-  @Order(5)
+  @Order(6)
   @DisplayName("按指定列查询Emp")
   void findByColumn() {
     EmpMapper mapper = session.getMapper(EmpMapper.class);

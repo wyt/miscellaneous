@@ -37,4 +37,7 @@ public class Emp {
 
   /** 员工部门 */
   private int deptNo;
+
+  /** Emp与Dept一对一 */
+  private Dept dept;
 }

@@ -11,6 +11,9 @@ public interface EmpMapper {
 
   Emp selectEmp(int empNo);
 
+  /** 查询出级联的Dept */
+  Emp selectEmpCascade(int empNo);
+
   Emp findByColumn(@Param("column") String column, @Param("value") String value);
 
   void insertEmp(Emp emp);
