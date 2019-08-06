@@ -35,17 +35,19 @@ class EmpMapperTest {
       EmpMapper mapper = session.getMapper(EmpMapper.class);
 
       Emp emp = new Emp();
-      emp.setEname("Angus");
+      emp.setEName("Angus");
       emp.setJob("CEO");
-      emp.setHiredate(new Date(System.currentTimeMillis()));
+      emp.setHireDate(new Date(System.currentTimeMillis()));
       emp.setSal(new BigDecimal(42000.23));
-      emp.setDeptno(10);
+      emp.setDeptNo(10);
 
       mapper.insertEmp(emp);
-      insterEmpNo = emp.getEmpno();
-      System.out.println("empno: " + insterEmpNo);
+      insterEmpNo = emp.getEmpNo();
+      System.out.println("empNo: " + insterEmpNo);
     } catch (Exception e) {
       session.rollback();
+      // 抛出，否则发生异常时，junit测试可能通过
+      throw e;
     }
   }
 
@@ -67,7 +69,7 @@ class EmpMapperTest {
 
     EmpMapper mapper = session.getMapper(EmpMapper.class);
     Emp emp = mapper.selectEmp(insterEmpNo);
-    Assertions.assertEquals("Angus", emp.getEname());
+    Assertions.assertEquals("Angus", emp.getEName());
     Assertions.assertEquals("CTO", emp.getJob());
   }
 
@@ -84,8 +86,8 @@ class EmpMapperTest {
   @DisplayName("按指定列查询Emp")
   void findByColumn() {
     EmpMapper mapper = session.getMapper(EmpMapper.class);
-    Emp emp = mapper.findByColumn("ename", "SCOTT");
-    Assertions.assertEquals(7788, emp.getEmpno());
+    Emp emp = mapper.findByColumn("e_name", "SCOTT");
+    Assertions.assertEquals(7788, emp.getEmpNo());
   }
 
   @AfterEach

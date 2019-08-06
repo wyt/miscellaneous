@@ -15,10 +15,10 @@ import java.sql.Date;
 public class Emp {
 
   /** 员工编号 */
-  private int empno;
+  private int empNo;
 
   /** 员工姓名 */
-  private String ename;
+  private String eName;
 
   /** 员工岗位 */
   private String job;
@@ -27,7 +27,7 @@ public class Emp {
   private int mgr;
 
   /** 员工入职日期 */
-  private Date hiredate;
+  private Date hireDate;
 
   /** 员工工资 */
   private BigDecimal sal;
@@ -36,5 +36,5 @@ public class Emp {
   private BigDecimal comm;
 
   /** 员工部门 */
-  private int deptno;
+  private int deptNo;
 }

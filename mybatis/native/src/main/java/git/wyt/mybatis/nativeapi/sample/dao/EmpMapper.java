@@ -9,13 +9,13 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface EmpMapper {
 
-  Emp selectEmp(int empno);
+  Emp selectEmp(int empNo);
 
   Emp findByColumn(@Param("column") String column, @Param("value") String value);
 
   void insertEmp(Emp emp);
 
-  void deleteEmp(int empno);
+  void deleteEmp(int empNo);
 
   void updateEmp(Emp emp);
 }

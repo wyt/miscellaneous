@@ -5,35 +5,74 @@
 
 <mapper namespace="git.wyt.mybatis.nativeapi.sample.dao.EmpMapper">
 
-    <select id="selectEmp" resultType="Emp">
-        SELECT *
-        FROM Emp
-        WHERE empno = #{empno}
+    <resultMap id="empResultMap" type="Emp">
+        <id property="empNo" column="emp_no"/>
+        <result property="eName" column="e_name"/>
+        <result property="job" column="job"/>
+        <result property="mgr" column="mgr"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="sal" column="sal"/>
+        <result property="comm" column="comm"/>
+        <result property="deptNo" column="dept_no"/>
+    </resultMap>
+
+    <select id="selectEmp" resultType="Emp" resultMap="empResultMap">
+        SELECT
+            emp_no,
+            e_name,
+            job,
+            mgr,
+            hire_date,
+            sal,
+            comm,
+            dept_no
+        FROM
+            Emp
+        WHERE
+            emp_no = #{empNo}
     </select>
 
-    <select id="findByColumn" resultType="Emp">
-        select * from Emp where ${column} = #{value}
+    <select id="findByColumn" resultType="Emp" resultMap="empResultMap">
+        SELECT
+            emp_no,
+            e_name,
+            job,
+            mgr,
+            hire_date,
+            sal,
+            comm,
+            dept_no
+        FROM
+            Emp
+        WHERE
+            ${column} = #{value}
     </select>
 
-    <insert id="insertEmp" useGeneratedKeys="true" keyProperty="empno"
+    <insert id="insertEmp" useGeneratedKeys="true" keyProperty="empNo"
             parameterType="Emp">
-        INSERT INTO Emp (ename,job,mgr,hiredate,sal,comm,deptno) VALUES (#{ename},#{job},#{mgr},#{hiredate},#{sal},#{comm},#{deptno})
+        INSERT INTO Emp ( e_name, job, mgr, hire_date, sal, comm, dept_no )
+        VALUES
+            (#{eName},#{job},#{mgr},#{hireDate},#{sal},#{comm},#{deptNo})
     </insert>
 
     <update id="updateEmp">
-        UPDATE Emp SET
-         ename = #{ename},
-         job = #{job},
-         mgr = #{mgr},
-         hiredate = #{hiredate},
-         sal = #{sal},
-         comm = #{comm},
-         deptno = #{deptno}
-        WHERE empno = #{empno}
+        UPDATE Emp
+        SET e_name = #{eName},
+        job = #{job},
+        mgr = #{mgr},
+        hire_date = #{hireDate},
+        sal = #{sal},
+        comm = #{comm},
+        dept_no = #{deptNo}
+        WHERE
+            emp_no = #{empNo}
     </update>
 
     <delete id="deleteEmp">
-        delete from Emp where empno = #{empno}
+        DELETE
+        FROM
+            Emp
+        WHERE
+            emp_no = #{empNo}
     </delete>
-
 </mapper>
