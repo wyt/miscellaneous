@@ -27,7 +27,7 @@
         <result property="deptNo" column="dept_no"/>
     </resultMap>
 
-    <select id="selectEmp" resultType="Emp" resultMap="empResultMap">
+    <select id="selectEmp" resultMap="empResultMap">
         SELECT
         <include refid="empColumns">
             <property name="alias" value="t1"/>
@@ -38,7 +38,7 @@
         t1.emp_no = #{empNo}
     </select>
 
-    <select id="findByColumn" resultType="Emp" resultMap="empResultMap">
+    <select id="findByColumn" resultMap="empResultMap">
         SELECT
         <include refid="empColumns">
             <property name="alias" value="t1"/>
