@@ -103,7 +103,7 @@ class EmpMapperTest {
     Assertions.assertEquals("BOSTON", emp.getDept().getLoc());
   }
 
-  //  @Test
+  @Test
   @Order(5)
   @DisplayName("删除一个Emp")
   void delete() {
