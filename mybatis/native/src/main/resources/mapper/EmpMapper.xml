@@ -5,6 +5,17 @@
 
 <mapper namespace="git.wyt.mybatis.nativeapi.sample.dao.EmpMapper">
 
+    <sql id="empColumns">
+        ${alias}.emp_no,
+        ${alias}.e_name,
+        ${alias}.job,
+        ${alias}.mgr,
+        ${alias}.hire_date,
+        ${alias}.sal,
+        ${alias}.comm,
+        ${alias}.dept_no
+    </sql>
+
     <resultMap id="empResultMap" type="Emp">
         <id property="empNo" column="emp_no"/>
         <result property="eName" column="e_name"/>
@@ -18,34 +29,24 @@
 
     <select id="selectEmp" resultType="Emp" resultMap="empResultMap">
         SELECT
-            emp_no,
-            e_name,
-            job,
-            mgr,
-            hire_date,
-            sal,
-            comm,
-            dept_no
+        <include refid="empColumns">
+            <property name="alias" value="t1"/>
+        </include>
         FROM
-            Emp
+        Emp t1
         WHERE
-            emp_no = #{empNo}
+        t1.emp_no = #{empNo}
     </select>
 
     <select id="findByColumn" resultType="Emp" resultMap="empResultMap">
         SELECT
-            emp_no,
-            e_name,
-            job,
-            mgr,
-            hire_date,
-            sal,
-            comm,
-            dept_no
+        <include refid="empColumns">
+            <property name="alias" value="t1"/>
+        </include>
         FROM
-            Emp
+        Emp t1
         WHERE
-            ${column} = #{value}
+        t1.${column} = #{value}
     </select>
 
     <insert id="insertEmp" useGeneratedKeys="true" keyProperty="empNo"
