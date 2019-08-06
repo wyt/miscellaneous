@@ -38,12 +38,13 @@ class EmpMapperTest {
       Emp emp = new Emp();
       emp.setEName("Angus");
       emp.setJob("CEO");
+      emp.setMgr(7739);
       emp.setHireDate(new Date(System.currentTimeMillis()));
       emp.setSal(new BigDecimal(42000.23));
+      emp.setComm(new BigDecimal(100));
 
       Dept dept = new Dept();
       dept.setDeptNo(10);
-
       emp.setDept(dept);
 
       mapper.insertEmp(emp);
@@ -62,7 +63,12 @@ class EmpMapperTest {
   void updateEmp() {
     EmpMapper mapper = session.getMapper(EmpMapper.class);
     Emp emp = mapper.selectEmp(insterEmpNo);
+
+    Dept dept = new Dept();
+    dept.setDeptNo(40);
+    emp.setDept(dept);
     emp.setJob("CTO");
+
     mapper.updateEmp(emp);
   }
 
@@ -78,6 +84,8 @@ class EmpMapperTest {
     Assertions.assertEquals("CTO", emp.getJob());
 
     Assertions.assertNull(emp.getDept().getDName());
+    Assertions.assertNull(emp.getDept().getLoc());
+    Assertions.assertEquals(40, emp.getDept().getDeptNo());
   }
 
   @Test
@@ -90,12 +98,12 @@ class EmpMapperTest {
     Assertions.assertEquals("Angus", emp.getEName());
     Assertions.assertEquals("CTO", emp.getJob());
 
-    Assertions.assertEquals(10, emp.getDept().getDeptNo());
-    Assertions.assertEquals("ACCOUNTING", emp.getDept().getDName());
-    Assertions.assertEquals("NEW YORK", emp.getDept().getLoc());
+    Assertions.assertEquals(40, emp.getDept().getDeptNo());
+    Assertions.assertEquals("OPERATIONS", emp.getDept().getDName());
+    Assertions.assertEquals("BOSTON", emp.getDept().getLoc());
   }
 
-  @Test
+  //  @Test
   @Order(5)
   @DisplayName("删除一个Emp")
   void delete() {

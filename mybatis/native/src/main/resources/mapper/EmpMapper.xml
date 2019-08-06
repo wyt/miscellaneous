@@ -30,7 +30,6 @@
         <result property="hireDate" column="hire_date"/>
         <result property="sal" column="sal"/>
         <result property="comm" column="comm"/>
-        <result property="deptNo" column="dept_no"/>
         <!-- Emp与Dept多对一 -->
         <association property="dept" column="dept_no" javaType="Dept">
             <id property="deptNo" column="dept_no"/>
@@ -78,7 +77,7 @@
 
     <insert id="insertEmp" useGeneratedKeys="true" keyProperty="empNo"
             parameterType="Emp">
-        INSERT INTO Emp ( e_name, job, mgr, hire_date, sal, comm, dept_no )
+        INSERT INTO Emp (e_name, job, mgr, hire_date, sal, comm, dept_no)
         VALUES
             (#{eName},#{job},#{mgr},#{hireDate},#{sal},#{comm},#{dept.deptNo})
     </insert>
@@ -91,7 +90,7 @@
         hire_date = #{hireDate},
         sal = #{sal},
         comm = #{comm},
-        dept_no = #{deptNo}
+        dept_no = #{dept.deptNo}
         WHERE
             emp_no = #{empNo}
     </update>

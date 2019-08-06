@@ -35,9 +35,6 @@ public class Emp {
   /** 员工提成 */
   private BigDecimal comm;
 
-  /** 员工部门 */
-  private int deptNo;
-
   /** Emp与Dept一对一 */
   private Dept dept;
 }
