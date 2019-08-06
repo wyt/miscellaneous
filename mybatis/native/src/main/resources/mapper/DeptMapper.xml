@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="git.wyt.mybatis.nativeapi.sample.dao.DeptMapper">
+
+    <sql id="deptColumns">
+        ${alias}.dept_no,
+        ${alias}.d_name,
+        ${alias}.loc
+    </sql>
+
+    <sql id="empColumns">
+        ${alias}.emp_no,
+        ${alias}.e_name,
+        ${alias}.job,
+        ${alias}.mgr,
+        ${alias}.hire_date,
+        ${alias}.sal,
+        ${alias}.comm
+    </sql>
+
+    <resultMap id="deptResultMap" type="Dept">
+        <id property="deptNo" column="dept_no"/>
+        <result property="dName" column="d_name"/>
+        <result property="loc" column="loc"/>
+        <collection property="emps" ofType="Emp">
+            <id property="empNo" column="emp_no"/>
+            <result property="eName" column="e_name"/>
+            <result property="job" column="job"/>
+            <result property="mgr" column="mgr"/>
+            <result property="hireDate" column="hire_date"/>
+            <result property="sal" column="sal"/>
+            <result property="comm" column="comm"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectEmps" resultMap="deptResultMap">
+        SELECT
+        <include refid="deptColumns">
+            <property name="alias" value="t1"/>
+        </include>
+        ,
+        <include refid="empColumns">
+            <property name="alias" value="t2"/>
+        </include>
+        FROM dept t1
+        LEFT OUTER
+        JOIN emp t2 ON t1.dept_no = t2.dept_no
+        WHERE t1.dept_no = #{dept_no}
+    </select>
+</mapper>

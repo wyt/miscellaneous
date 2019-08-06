@@ -26,5 +26,6 @@
 
     <mappers>
         <mapper resource="mapper/EmpMapper.xml"/>
+        <mapper resource="mapper/DeptMapper.xml"/>
     </mappers>
 </configuration>

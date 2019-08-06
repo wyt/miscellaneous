@@ -3,6 +3,8 @@ package git.wyt.mybatis.nativeapi.sample.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 /**
  * @author wangyongtao
  * @date 2019-7-26
@@ -19,4 +21,7 @@ public class Dept {
 
   /** 部门位置 */
   private String loc;
+
+  /** 一个部门下对应N个员工 */
+  private List<Emp> emps;
 }
