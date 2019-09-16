@@ -6,6 +6,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 
 import java.util.Properties;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Kafka生产者API
@@ -27,10 +28,16 @@ public class Foobar {
 
     Producer<String, String> producer = new KafkaProducer<>(props);
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
       ProducerRecord record =
           new ProducerRecord<>(MY_TEST_TOPIC, Integer.toString(i), UUID.randomUUID().toString());
-      producer.send(record);
+      try {
+        producer.send(record).get();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      } catch (ExecutionException e) {
+        e.printStackTrace();
+      }
       System.out.println(i + " send sucessfully.");
     }
     producer.close();
