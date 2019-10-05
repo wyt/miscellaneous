@@ -8,10 +8,7 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 
-/**
- * Kafka消费者API
- * https://www.jianshu.com/p/6c0c012978f8
- */
+/** Kafka消费者API https://www.jianshu.com/p/6c0c012978f8 */
 public class Foobar {
 
   public static void main(String[] args) {
@@ -36,12 +33,13 @@ public class Foobar {
     // 消费者订阅的topic, 可同时订阅多个
     consumer.subscribe(Arrays.asList(samples.producer.Foobar.MY_TEST_TOPIC));
 
-    while (true) {
+    for (; ; ) {
       // 读取数据，读取超时时间为100ms
       ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
       for (ConsumerRecord<String, String> record : records) {
         System.out.printf(
-            "offset = %d, key = %s, value = %s%n", record.offset(), record.key(), record.value());
+            "partition = %d, offset = %d, key = %s, value = %s%n",
+            record.partition(), record.offset(), record.key(), record.value());
       }
     }
   }

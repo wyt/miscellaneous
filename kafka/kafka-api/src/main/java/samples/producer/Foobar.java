@@ -16,7 +16,7 @@ public class Foobar {
 
   public static final String BOOTSTRAP_SERVERS =
       "192.168.91.146:9092,192.168.91.146:9093,192.168.91.146:9094";
-  public static final String MY_TEST_TOPIC = "my-replicated-topic-002";
+  public static final String MY_TEST_TOPIC = "my-replicated-topic-003";
 
   public static void main(String[] args) {
     Properties props = new Properties();
