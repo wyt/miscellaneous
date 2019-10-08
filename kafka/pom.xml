@@ -13,5 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>kafka-api</module>
+        <module>springboot-api</module>
     </modules>
 </project>
