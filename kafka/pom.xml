@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
     <modules>
         <module>kafka-api</module>
-        <module>springboot-api</module>
 		<module>kafka-sample-01</module>
 		<module>kafka-sample-02</module>
 		<module>kafka-sample-03</module>
