@@ -16,10 +16,10 @@
 
 package com.example;
 
+import com.common.Foo2;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
@@ -34,60 +34,63 @@ import org.springframework.kafka.support.converter.RecordMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 import org.springframework.util.backoff.FixedBackOff;
 
-import com.common.Foo2;
-
 /**
- *
  * @author Gary Russell
  * @since 2.2.1
- *
  */
 @SpringBootApplication
 public class Application {
 
-	private final Logger logger = LoggerFactory.getLogger(Application.class);
+  private final Logger logger = LoggerFactory.getLogger(Application.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(Application.class, args);
+  }
 
-	@Bean
-	public ConcurrentKafkaListenerContainerFactory<?, ?> kafkaListenerContainerFactory(
-			ConcurrentKafkaListenerContainerFactoryConfigurer configurer,
-			ConsumerFactory<Object, Object> kafkaConsumerFactory,
-			KafkaTemplate<Object, Object> template) {
-		ConcurrentKafkaListenerContainerFactory<Object, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
-		configurer.configure(factory, kafkaConsumerFactory);
-		factory.setErrorHandler(new SeekToCurrentErrorHandler(new DeadLetterPublishingRecoverer(template), new FixedBackOff(0L, 2))); // dead-letter after 3 tries
-		return factory;
-	}
+  @Bean
+  public ConcurrentKafkaListenerContainerFactory<?, ?> kafkaListenerContainerFactory(
+      ConcurrentKafkaListenerContainerFactoryConfigurer configurer,
+      ConsumerFactory<Object, Object> kafkaConsumerFactory,
+      KafkaTemplate<Object, Object> template) {
 
-	@Bean
-	public RecordMessageConverter converter() {
-		return new StringJsonMessageConverter();
-	}
+    ConcurrentKafkaListenerContainerFactory<Object, Object> factory =
+        new ConcurrentKafkaListenerContainerFactory<>();
 
-	@KafkaListener(id = "fooGroup", topics = "topic1")
-	public void listen(Foo2 foo) {
-		logger.info("Received: " + foo);
-		if (foo.getFoo().startsWith("fail")) {
-			throw new RuntimeException("failed");
-		}
-	}
+    configurer.configure(factory, kafkaConsumerFactory);
 
-	@KafkaListener(id = "dltGroup", topics = "topic1.DLT")
-	public void dltListen(String in) {
-		logger.info("Received from DLT: " + in);
-	}
+    factory.setErrorHandler(
+        new SeekToCurrentErrorHandler(
+            new DeadLetterPublishingRecoverer(template),
+            new FixedBackOff(0L, 2))); // dead-letter after 3 tries
 
-	@Bean
-	public NewTopic topic() {
-		return new NewTopic("topic1", 1, (short) 1);
-	}
+    return factory;
+  }
 
-	@Bean
-	public NewTopic dlt() {
-		return new NewTopic("topic1.DLT", 1, (short) 1);
-	}
+  @Bean
+  public RecordMessageConverter converter() {
+    return new StringJsonMessageConverter();
+  }
 
+  @KafkaListener(id = "fooGroup", topics = "topic1")
+  public void listen(Foo2 foo) {
+    logger.info("Received: " + foo);
+    if (foo.getFoo().startsWith("fail")) {
+      throw new RuntimeException("failed");
+    }
+  }
+
+  @KafkaListener(id = "dltGroup", topics = "topic1.DLT")
+  public void dltListen(String in) {
+    logger.info("Received from DLT: " + in);
+  }
+
+  @Bean
+  public NewTopic topic() {
+    return new NewTopic("topic1", 1, (short) 1);
+  }
+
+  @Bean
+  public NewTopic dlt() {
+    return new NewTopic("topic1.DLT", 1, (short) 1);
+  }
 }
