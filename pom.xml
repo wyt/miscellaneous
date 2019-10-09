@@ -30,6 +30,7 @@
         <module>netty</module>
         <module>rocketmq</module>
         <module>commons-pool2</module>
+        <module>springboot2</module>
     </modules>
 
     <!-- 所有子项目都会引用 -->
