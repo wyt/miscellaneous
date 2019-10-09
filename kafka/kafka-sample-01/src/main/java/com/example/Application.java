@@ -20,6 +20,7 @@ import com.common.Foo2;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
@@ -44,7 +45,12 @@ public class Application {
   private final Logger logger = LoggerFactory.getLogger(Application.class);
 
   public static void main(String[] args) {
-    SpringApplication.run(Application.class, args);
+    // SpringApplication.run(Application.class, args);
+    // 传递给SpringApplication的构造器参数将作为spring
+    // beans的配置源，多数情况下，它们是一些@Configuration类的引用，但也可能是XML配置或要扫描包的引用。
+    SpringApplication app = new SpringApplication(Application.class);
+    app.setBannerMode(Banner.Mode.OFF);
+    app.run(args);
   }
 
   @Bean

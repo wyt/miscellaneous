@@ -1,8 +1,10 @@
 ## Sample 1
 
 This sample demonstrates a simple producer and consumer; the producer sends objects of type `Foo1` and the consumer receives objects of type `Foo2` (the objects have the same field, `foo`).
+这是一个简单的demo一个生产者一个消费者; 生产者Foo1对象,消费者接受对象类型为Foo2。对象具有相同的字段foo
 
 The producer uses a `JsonSerializer`; the consumer uses the `StringDeserializer` that is automatically configured by Spring Boot, together with a `StringJsonMessageConverter` which converts to the type of the listener method argument.
+生产者使用JsonSerializer,消费者使用Spring Boot自动配置的StringDeserializer,
 
 Run the application and use curl to send some data:
 
