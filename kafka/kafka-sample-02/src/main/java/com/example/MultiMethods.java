@@ -26,25 +26,25 @@ import com.common.Foo2;
 /**
  * @author Gary Russell
  * @since 5.1
- *
  */
 @Component
-@KafkaListener(id = "multiGroup", topics = { "foos", "bars" })
+@KafkaListener(
+    id = "multiGroup",
+    topics = {"foos", "bars"})
 public class MultiMethods {
 
-	@KafkaHandler
-	public void foo(Foo2 foo) {
-		System.out.println("Received: " + foo);
-	}
+  @KafkaHandler
+  public void foo(Foo2 foo) {
+    System.out.println("Received: " + foo);
+  }
 
-	@KafkaHandler
-	public void bar(Bar2 bar) {
-		System.out.println("Received: " + bar);
-	}
+  @KafkaHandler
+  public void bar(Bar2 bar) {
+    System.out.println("Received: " + bar);
+  }
 
-	@KafkaHandler(isDefault = true)
-	public void unknown(Object object) {
-		System.out.println("Received unknown: " + object);
-	}
-
+  @KafkaHandler(isDefault = true)
+  public void unknown(Object object) {
+    System.out.println("Received unknown: " + object);
+  }
 }

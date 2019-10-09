@@ -19,31 +19,29 @@ package com.common;
 /**
  * @author Gary Russell
  * @since 5.1
- *
  */
 public class Foo1 {
 
-	private String foo;
+  private String foo;
 
-	public Foo1() {
-		super();
-	}
+  public Foo1() {
+    super();
+  }
 
-	public Foo1(String foo) {
-		this.foo = foo;
-	}
+  public Foo1(String foo) {
+    this.foo = foo;
+  }
 
-	public String getFoo() {
-		return this.foo;
-	}
+  public String getFoo() {
+    return this.foo;
+  }
 
-	public void setFoo(String foo) {
-		this.foo = foo;
-	}
+  public void setFoo(String foo) {
+    this.foo = foo;
+  }
 
-	@Override
-	public String toString() {
-		return "Foo1 [foo=" + this.foo + "]";
-	}
-
+  @Override
+  public String toString() {
+    return "Foo1 [foo=" + this.foo + "]";
+  }
 }

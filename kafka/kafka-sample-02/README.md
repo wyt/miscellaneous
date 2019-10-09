@@ -1,4 +1,4 @@
-== Sample 2
+## Sample 2
 
 This sample demonstrates a simple producer and a multi-method consumer; the producer sends objects of types `Foo1` and `Bar1` and the consumer receives objects of type `Foo2` and `Bar2` (the objects have the same field, `foo`).
 
