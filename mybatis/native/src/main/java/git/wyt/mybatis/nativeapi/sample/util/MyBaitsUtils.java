@@ -20,7 +20,7 @@ public class MyBaitsUtils {
 
   static SqlSessionFactory sqlSessionFactory = null;
 
-  static ThreadLocal<SqlSession> threadLocal = new ThreadLocal<SqlSession>();
+  static ThreadLocal<SqlSession> threadLocal = new ThreadLocal<>();
 
   static {
     InputStream inputStream = null;
@@ -36,6 +36,7 @@ public class MyBaitsUtils {
     SqlSession session = threadLocal.get();
     if (session == null) {
       System.out.println("sqlSession为空，新创建");
+      // 关闭自动提交事务
       session = sqlSessionFactory.openSession(false);
       threadLocal.set(session);
     } else {
@@ -47,6 +48,7 @@ public class MyBaitsUtils {
   public static void closeSession() {
     SqlSession session = threadLocal.get();
     if (session != null) {
+      // 自动提交事务关闭，需要手动commit
       session.commit();
       session.close();
       System.out.println("关闭sqlSession");
