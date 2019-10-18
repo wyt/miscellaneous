@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 @Configuration
 public class MybatisConfig {
 
-  String[] mapperLocations = {"mapper"};
+  String[] mapperLocations = {"classpath*:mapper/**/*.xml"};
 
   private static final ResourcePatternResolver resourceResolver =
       new PathMatchingResourcePatternResolver();

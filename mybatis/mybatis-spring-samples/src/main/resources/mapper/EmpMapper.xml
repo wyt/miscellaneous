@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="git.wyt.mybatis.nativeapi.sample.dao.EmpMapper">
+
+    <sql id="empColumns">
+        ${alias}.emp_no,
+        ${alias}.e_name,
+        ${alias}.job,
+        ${alias}.mgr,
+        ${alias}.hire_date,
+        ${alias}.sal,
+        ${alias}.comm,
+        ${alias}.dept_no
+    </sql>
+
+    <sql id="deptColumns">
+        ${alias}.dept_no,
+        ${alias}.d_name,
+        ${alias}.loc
+    </sql>
+
+    <resultMap id="empResultMap" type="Emp">
+        <id property="empNo" column="emp_no"/>
+        <result property="eName" column="e_name"/>
+        <result property="job" column="job"/>
+        <result property="mgr" column="mgr"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="sal" column="sal"/>
+        <result property="comm" column="comm"/>
+        <!-- Emp与Dept多对一 -->
+        <association property="dept" column="dept_no" javaType="Dept">
+            <id property="deptNo" column="dept_no"/>
+            <result property="dName" column="d_name"/>
+            <result property="loc" column="loc"/>
+        </association>
+    </resultMap>
+
+    <select id="selectEmp" resultMap="empResultMap">
+        SELECT
+        <include refid="empColumns">
+            <property name="alias" value="t1"/>
+        </include>
+        FROM
+        Emp t1
+        WHERE
+        t1.emp_no = #{empNo}
+    </select>
+
+    <select id="selectEmpCascade" resultMap="empResultMap">
+        SELECT
+        <include refid="empColumns">
+            <property name="alias" value="t1"/>
+        </include>
+        ,
+        <include refid="deptColumns">
+            <property name="alias" value="t2"/>
+        </include>
+        FROM emp t1
+        LEFT OUTER
+        JOIN dept t2 ON t1.dept_no = t2.dept_no
+        WHERE t1.emp_no = #{empNo}
+    </select>
+
+    <select id="findByColumn" resultMap="empResultMap">
+        SELECT
+        <include refid="empColumns">
+            <property name="alias" value="t1"/>
+        </include>
+        FROM
+        Emp t1
+        WHERE
+        t1.${column} = #{value}
+    </select>
+
+    <insert id="insertEmp" useGeneratedKeys="true" keyProperty="empNo"
+            parameterType="Emp">
+        INSERT INTO Emp (e_name, job, mgr, hire_date, sal, comm, dept_no)
+        VALUES
+            (#{eName},#{job},#{mgr},#{hireDate},#{sal},#{comm},#{dept.deptNo})
+    </insert>
+
+    <update id="updateEmp">
+        UPDATE Emp
+        SET e_name = #{eName},
+        job = #{job},
+        mgr = #{mgr},
+        hire_date = #{hireDate},
+        sal = #{sal},
+        comm = #{comm},
+        dept_no = #{dept.deptNo}
+        WHERE
+            emp_no = #{empNo}
+    </update>
+
+    <delete id="deleteEmp">
+        DELETE
+        FROM
+            Emp
+        WHERE
+            emp_no = #{empNo}
+    </delete>
+</mapper>
