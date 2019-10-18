@@ -1,5 +1,7 @@
 package config;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.context.annotation.Bean;
@@ -13,10 +15,14 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * @author wangyongtao
+ * @date 2019/10/18
+ */
 @Configuration
 public class MybatisConfig {
 
-  String[] mapperLocations;
+  String[] mapperLocations = {"mapper"};
 
   private static final ResourcePatternResolver resourceResolver =
       new PathMatchingResourcePatternResolver();
@@ -32,7 +38,9 @@ public class MybatisConfig {
 
   @Bean
   public DataSource dataSource() {
-    return null;
+    HikariConfig config = new HikariConfig("hikari.properties");
+    HikariDataSource ds = new HikariDataSource(config);
+    return ds;
   }
 
   public Resource[] resolveMapperLocations() {
