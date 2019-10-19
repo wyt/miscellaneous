@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -35,6 +36,16 @@ public class MybatisConfig {
     sqlSessionFactoryBean.setDataSource(dataSource());
     sqlSessionFactoryBean.setMapperLocations(resolveMapperLocations());
     return sqlSessionFactoryBean.getObject();
+  }
+
+  /**
+   * 事务处理Bean
+   *
+   * @return
+   */
+  @Bean
+  public DataSourceTransactionManager transactionManager() {
+    return new DataSourceTransactionManager(dataSource());
   }
 
   @Bean
