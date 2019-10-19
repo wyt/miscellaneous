@@ -1,4 +1,4 @@
-package config;
+package mybatis.spring.samples.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -16,6 +16,8 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
+ * Mybatis JavaConfig示例.
+ *
  * @author wangyongtao
  * @date 2019/10/18
  */
@@ -31,7 +33,6 @@ public class MybatisConfig {
   public SqlSessionFactory sqlSessionFactory() throws Exception {
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
     sqlSessionFactoryBean.setDataSource(dataSource());
-
     sqlSessionFactoryBean.setMapperLocations(resolveMapperLocations());
     return sqlSessionFactoryBean.getObject();
   }
