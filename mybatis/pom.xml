@@ -21,5 +21,6 @@
     <modules>
         <module>mybatis-samples</module>
         <module>mybatis-spring-samples</module>
+        <module>mybatis-plus-samples</module>
     </modules>
 </project>
