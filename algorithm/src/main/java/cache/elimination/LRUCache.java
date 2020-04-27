@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 /**
  * LRU Cache
  *
+ * <p>https://www.jianshu.com/p/1f8e36285539
+ *
  * @param <K>
  * @param <V>
  */
