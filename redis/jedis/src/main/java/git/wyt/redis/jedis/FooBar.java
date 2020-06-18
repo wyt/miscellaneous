@@ -2,7 +2,9 @@ package git.wyt.redis.jedis;
 
 import redis.clients.jedis.*;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class FooBar {
@@ -14,15 +16,22 @@ public class FooBar {
 
   public static void main(String[] args) {
     FooBar foo = new FooBar();
-    foo.useCluster();
+    foo.basic();
   }
 
   /** 直接使用单节点Redis */
   public void basic() {
     Jedis jedis = new Jedis(REDIS_LOCAL_HOST, REDIS_LOCAL_PORT);
-    jedis.set("foo", "bar");
-    String value = jedis.get("foo");
-    System.out.println(value);
+    //    jedis.set("foo", "bar");
+    //    String value = jedis.get("foo");
+    //    System.out.println(value);
+
+    // map
+    Map<String, String> user = new HashMap<String, String>();
+    user.put("name", "cd");
+    user.put("password", "123456");
+    // map存入redis
+    jedis.hmset("user", user);
   }
 
   /** 对单节点Redis应用连接池 */
