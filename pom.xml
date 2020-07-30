@@ -33,6 +33,7 @@
         <module>algorithm</module>
         <module>algorithm</module>
         <module>nacos</module>
+        <module>okhttp</module>
     </modules>
 
     <!-- 所有子项目都会引用 -->
