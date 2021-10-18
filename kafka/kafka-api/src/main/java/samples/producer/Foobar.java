@@ -8,14 +8,11 @@ import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-/**
- * Kafka生产者API
- * https://www.jianshu.com/p/cbf64c1f9fa8
- */
+/** Kafka生产者API https://www.jianshu.com/p/cbf64c1f9fa8 */
 public class Foobar {
 
   public static final String BOOTSTRAP_SERVERS =
-      "192.168.91.146:9092,192.168.91.146:9093,192.168.91.146:9094";
+      "192.168.101.146:9092,192.168.101.146:9093,192.168.101.146:9094";
   public static final String MY_TEST_TOPIC = "my-replicated-topic-003";
 
   public static void main(String[] args) {

@@ -25,4 +25,16 @@ public class RedisCnfig {
     template.setKeySerializer(stringSerializer);
     return template;
   }
+
+  @Bean(name = "strRedisTemplate")
+  public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
+    RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+    RedisSerializer stringSerializer = redisTemplate.getStringSerializer();
+    redisTemplate.setKeySerializer(stringSerializer);
+    redisTemplate.setValueSerializer(stringSerializer);
+    redisTemplate.setHashKeySerializer(stringSerializer);
+    redisTemplate.setHashValueSerializer(stringSerializer);
+    redisTemplate.setConnectionFactory(factory);
+    return redisTemplate;
+  }
 }
