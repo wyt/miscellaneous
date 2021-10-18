@@ -35,11 +35,11 @@ public class FoobarService {
     byte[] myListByte = operations.get("holmes.biz.display:reportMap003");
     List<Map<String, Object>> l = (List<Map<String, Object>>) ObjectByteUtils.toObject(myListByte);
 
-    list.forEach(
+    l.forEach(
         map -> {
           map.forEach(
               (k, v) -> {
-                System.out.print(k + "," + v + " ");
+                System.out.print(k + ", " + v + "; ");
               });
           System.out.println();
         });

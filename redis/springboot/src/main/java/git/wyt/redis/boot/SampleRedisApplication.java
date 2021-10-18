@@ -31,7 +31,7 @@ public class SampleRedisApplication implements CommandLineRunner {
   @Autowired private FoobarService foobarService;
 
   @Override
-  public void run(String... args) throws Exception {
+  public void run(String... args) {
     ValueOperations<String, String> ops = this.template.opsForValue();
     String key = "spring.boot.redis.test";
     if (!this.template.hasKey(key)) {
