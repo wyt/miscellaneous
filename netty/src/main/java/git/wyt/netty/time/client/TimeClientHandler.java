@@ -10,6 +10,8 @@ public class TimeClientHandler extends ChannelInboundHandlerAdapter {
 
   @Override
   public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    // 读事件
+
     ByteBuf m = (ByteBuf) msg; // (1)
     try {
       long currentTimeMillis = (m.readUnsignedInt() - 2208988800L) * 1000L;

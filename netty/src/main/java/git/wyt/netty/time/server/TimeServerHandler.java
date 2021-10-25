@@ -10,6 +10,7 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
 
   @Override
   public void channelActive(final ChannelHandlerContext ctx) { // (1)
+    // fireChannelActive 连接建立事件
 
     final ByteBuf time = ctx.alloc().buffer(4); // (2)
     time.writeInt((int) (System.currentTimeMillis() / 1000L + 2208988800L));
@@ -19,7 +20,6 @@ public class TimeServerHandler extends ChannelInboundHandlerAdapter {
         new ChannelFutureListener() {
           @Override
           public void operationComplete(ChannelFuture future) {
-            assert f == future;
             ctx.close();
           }
         }); // (4)

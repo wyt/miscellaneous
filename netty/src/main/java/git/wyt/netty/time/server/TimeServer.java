@@ -18,24 +18,27 @@ public class TimeServer {
   }
 
   public void run() throws Exception {
-    EventLoopGroup bossGroup = new NioEventLoopGroup(); // (1)
+    // 创建两个线程组 boss and worker
+    EventLoopGroup bossGroup = new NioEventLoopGroup();
     EventLoopGroup workerGroup = new NioEventLoopGroup();
     try {
-      ServerBootstrap b = new ServerBootstrap(); // (2)
+      ServerBootstrap b = new ServerBootstrap(); // 创建服务端启动对象，并设置参数
       b.group(bossGroup, workerGroup)
-          .channel(NioServerSocketChannel.class) // (3)
-          .childHandler(
-              new ChannelInitializer<SocketChannel>() { // (4)
+          .channel(NioServerSocketChannel.class) // 设置服务端通道实现类型
+          .option(ChannelOption.SO_BACKLOG, 128) // 初始化服务端可连接队列
+          .childOption(ChannelOption.SO_KEEPALIVE, true) // 设置保持活动连接状态
+          .childHandler( // 使用匿名内部类的形式初始化通道对象
+              new ChannelInitializer<SocketChannel>() {
                 @Override
                 public void initChannel(SocketChannel ch) throws Exception {
                   ch.pipeline().addLast(new TimeServerHandler());
                 }
-              })
-          .option(ChannelOption.SO_BACKLOG, 128) // (5)
-          .childOption(ChannelOption.SO_KEEPALIVE, true); // (6)
+              });
+
+      System.out.println("启动服务端就绪...");
 
       // Bind and start to accept incoming connections.
-      ChannelFuture f = b.bind(port).sync(); // (7)
+      ChannelFuture f = b.bind(port).sync();
 
       // Wait until the server socket is closed.
       // In this example, this does not happen, but you can do that to gracefully
