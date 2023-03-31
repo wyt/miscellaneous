@@ -45,11 +45,20 @@ public class CodeGenerator {
 
     // 数据源配置
     DataSourceConfig dataSource = new DataSourceConfig();
+
+    //    dataSource.setUrl(
+    //
+    // "jdbc:mysql://localhost:3306/miscellaneous?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");
+    //    dataSource.setDriverName("com.mysql.jdbc.Driver");
+    //    dataSource.setUsername("root");
+    //    dataSource.setPassword("123456");
+
     dataSource.setUrl(
-        "jdbc:mysql://localhost:3306/miscellaneous?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");
+        "jdbc:mysql://10.168.4.240:3306/YiCheForum?useUnicode=true&serverTimezone=GMT&useSSL=false&characterEncoding=utf8");
     dataSource.setDriverName("com.mysql.jdbc.Driver");
     dataSource.setUsername("root");
-    dataSource.setPassword("123456");
+    dataSource.setPassword("Lo7eRLiB2xfQbspw");
+
     mpg.setDataSource(dataSource);
 
     // 包配置
